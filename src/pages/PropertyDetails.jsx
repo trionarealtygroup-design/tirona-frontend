@@ -90,7 +90,7 @@ const PropertyDetails = () => {
                                 )}
                             </div>
 
-                            <a href={`mailto:${property.createdBy?.email || 'support@triona.com'}`} className="hero-btn" style={{ display: 'block', textAlign: 'center', width: '100%', marginTop: '15px' }}>
+                            <a href={`mailto:${property.createdBy?.email || 'trionarealtygroup@gmail.com'}`} className="hero-btn" style={{ display: 'block', textAlign: 'center', width: '100%', marginTop: '15px' }}>
                                 Contact Advisor
                             </a>
                         </div>
