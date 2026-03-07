@@ -175,7 +175,7 @@ const Home = () => {
                 <h2 className="become-triona-heading">Become a part of TRIONA</h2>
                 <div className="become-triona-cards">
                     <div className="hero-card">
-                        <h3>Become a Seller</h3>
+                        <h3>Become a Seller men</h3>
                         <p>List your property and reach genuine buyers.</p>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKu8OaVo_Nj1eFulzP1XJEt6CzjuhcK7w4dvvzB-U1WNubyw/viewform?usp=header">
                             Post Property →
