@@ -17,7 +17,7 @@ const Contact = () => {
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', alignItems: 'center' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '18px', color: '#333' }}>
                             <i className="fa-solid fa-phone" style={{ color: '#007bff' }}></i>
-                            <span>+91 83193 76372</span>
+                            <span>+91 97553 65517</span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '18px', color: '#333' }}>
                             <i className="fa-solid fa-location-dot" style={{ color: '#007bff' }}></i>
@@ -25,7 +25,7 @@ const Contact = () => {
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '18px', color: '#333' }}>
                             <i className="fa-solid fa-envelope" style={{ color: '#007bff' }}></i>
-                            <span>support@triona.com</span>
+                            <span>trionarealtygroup@gmail.com</span>
                         </div>
                     </div>
 
@@ -33,7 +33,7 @@ const Contact = () => {
                         <h3 style={{ fontSize: '20px', color: '#111', marginBottom: '15px' }}>Join our whatsapp community</h3>
                         <p style={{ fontSize: '14px', color: '#666', marginBottom: '20px' }}>Scan the QR code below to stay updated with exclusive property deals and community discussions.</p>
                         <div style={{ padding: '15px', background: '#fff', border: '1px solid #ddd', borderRadius: '12px', boxShadow: '0 5px 15px rgba(0,0,0,0.05)' }}>
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://qrfy.io/r/okl07Ax8PL" alt="WhatsApp Community QR" style={{ width: '150px', height: '150px', display: 'block' }} />
+                            <img src="/Images/WHATSAPP QR.jpeg" alt="WhatsApp Community QR" style={{ width: '150px', height: '150px', display: 'block' }} />
                         </div>
                     </div>
                 </div>
