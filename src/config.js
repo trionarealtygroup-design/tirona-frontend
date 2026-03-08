@@ -1,3 +1,3 @@
-const API_URL = "http://triona.in/api";
+const API_URL = "https://triona.in/api/api" 
 
 export default API_URL;
