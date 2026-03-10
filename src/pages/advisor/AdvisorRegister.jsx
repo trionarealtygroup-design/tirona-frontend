@@ -5,6 +5,20 @@ import API_URL from '../../config';
 import Navbar from '../../components/Navbar';
 
 const AdvisorRegister = () => {
+
+    const inputStyle = {
+        padding: "12px",
+        borderRadius: "8px",
+        border: "1.5px solid #ccc",
+        outline: "none",
+        fontSize: "14px",
+        fontFamily: "Segoe UI, sans-serif"
+    };
+
+    const focusStyle = (e, color) => {
+        e.target.style.border = `1.5px solid ${color}`;
+    };
+
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -27,6 +41,7 @@ const AdvisorRegister = () => {
         premium: { name: 'Premium Plan', price: '₹2999', qr: '/Images/qr.png', buyComm: '0.60%', sellComm: '0.40%' },
         premium_plus: { name: 'Premium Plus', price: '₹3999', qr: '/Images/qr.png', buyComm: '0.80%', sellComm: '0.60%' }
     };
+
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -45,11 +60,12 @@ const AdvisorRegister = () => {
 
         try {
             const submitData = { ...formData };
-            // Remove frontend-only field before sending
             delete submitData.referralStatus;
+
             const response = await axios.post(`${API_URL}/advisor/register`, submitData);
+
             setMessage(response.data.message);
-            // Clear form on success
+
             setFormData({
                 fullName: '',
                 email: '',
@@ -66,8 +82,8 @@ const AdvisorRegister = () => {
                 referralStatus: 'not_referred',
                 referredByPhone: ''
             });
+
         } catch (err) {
-            console.error("Registration error:", err.response?.data || err.message);
             setError(err.response?.data?.message || 'Registration failed. Please try again.');
         } finally {
             setLoading(false);
@@ -75,217 +91,223 @@ const AdvisorRegister = () => {
     };
 
     return (
-        <div>
+        <>
             <Navbar />
-            <div className="auth-container">
-                <h2>Advisor Registration</h2>
-                <p>Join TRIONA as an Advisor</p>
 
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        name="fullName"
-                        placeholder="Full Name *"
-                        value={formData.fullName}
-                        onChange={handleChange}
-                        required
-                    />
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Email *"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Password *"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                    <input
-                        type="text"
-                        name="mobile"
-                        placeholder="Mobile Number *"
-                        value={formData.mobile}
-                        onChange={handleChange}
-                        required
-                    />
-                    <input
-                        type="text"
-                        name="whatsapp"
-                        placeholder="WhatsApp Number"
-                        value={formData.whatsapp}
-                        onChange={handleChange}
-                    />
-                    <input
-                        type="text"
-                        name="city"
-                        placeholder="City *"
-                        value={formData.city}
-                        onChange={handleChange}
-                        required
-                    />
-                    <input
-                        type="text"
-                        name="pincode"
-                        placeholder="Pincode"
-                        value={formData.pincode}
-                        onChange={handleChange}
-                    />
-                    <input
-                        type="text"
-                        name="address"
-                        placeholder="Address"
-                        value={formData.address}
-                        onChange={handleChange}
-                    />
-                    <select
-                        name="gender"
-                        value={formData.gender}
-                        onChange={handleChange}
-                    >
-                        <option value="">Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <input
-                        type="number"
-                        name="age"
-                        placeholder="Age"
-                        value={formData.age}
-                        onChange={handleChange}
-                        min="18"
-                        max="100"
-                    />
+            <div style={{
+                minHeight: "100vh",
+                background: "linear-gradient(135deg,#4b2cbf,#8f5cff)",
+                padding: "40px 20px",
+                display: "flex",
+                justifyContent: "center"
+            }}>
 
-                    <div style={{ textAlign: 'left', marginBottom: '15px' }}>
-                        <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Status:</label>
-                        <label style={{ marginRight: '20px', cursor: 'pointer' }}>
+                <div style={{
+                    width: "100%",
+                    maxWidth: "900px",
+                    background: "#fff",
+                    borderRadius: "16px",
+                    padding: "40px",
+                    boxShadow: "0 30px 60px rgba(0,0,0,0.15)"
+                }}>
+
+                    <h2 style={{ textAlign: "center" }}>Advisor Registration</h2>
+
+                    <form onSubmit={handleSubmit} style={{
+                        display: "grid",
+                        gridTemplateColumns: "1fr 1fr",
+                        gap: "15px"
+                    }}>
+
+                        {[ 
+                            { name: "fullName", placeholder: "Full Name *" },
+                            { name: "email", placeholder: "Email *", type: "email" },
+                            { name: "password", placeholder: "Password *", type: "password" },
+                            { name: "mobile", placeholder: "Mobile Number *" },
+                            { name: "whatsapp", placeholder: "WhatsApp Number" },
+                            { name: "city", placeholder: "City *" },
+                            { name: "pincode", placeholder: "Pincode" },
+                            { name: "address", placeholder: "Address" }
+                        ].map((field, i) => (
                             <input
-                                type="radio"
-                                name="brokerStatus"
-                                value="existing_broker"
-                                checked={formData.brokerStatus === 'existing_broker'}
+                                key={i}
+                                name={field.name}
+                                type={field.type || "text"}
+                                placeholder={field.placeholder}
+                                value={formData[field.name]}
                                 onChange={handleChange}
-                                style={{ width: 'auto', marginRight: '5px' }}
+                                required={field.placeholder.includes("*")}
+                                style={inputStyle}
+                                onFocus={(e) => focusStyle(e, "#6c63ff")}
+                                onBlur={(e) => focusStyle(e, "#ccc")}
                             />
-                            Existing Broker
-                        </label>
-                        <label style={{ cursor: 'pointer' }}>
-                            <input
-                                type="radio"
-                                name="brokerStatus"
-                                value="fresher"
-                                checked={formData.brokerStatus === 'fresher'}
-                                onChange={handleChange}
-                                style={{ width: 'auto', marginRight: '5px' }}
-                            />
-                            Fresher with TRIONA
-                        </label>
-                    </div>
+                        ))}
 
-                    {/* === Professional Plan Section (NEW) === */}
-                    <div style={{ textAlign: 'left', marginBottom: '15px' }}>
-                        <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Select Professional Plan:</label>
-                        <select
-                            name="professionalPlan"
-                            value={formData.professionalPlan}
-                            onChange={handleChange}
-                            style={{ width: '100%', padding: '10px', borderRadius: '5px', border: '1px solid #ddd', fontSize: '14px' }}
-                        >
-                            <option value="basic">Basic Plan - ₹1999 | Buy Comm: 0.40% | Sell Comm: 0.20%</option>
-                            <option value="premium">Premium - ₹2999 | Buy Comm: 0.60% | Sell Comm: 0.40%</option>
-                            <option value="premium_plus">Premium Plus - ₹3999 | Buy Comm: 0.80% | Sell Comm: 0.60%</option>
+                        <select name="gender" value={formData.gender} onChange={handleChange}
+                            style={inputStyle}>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
                         </select>
 
-                        {/* QR Code Display */}
-                        <div style={{ textAlign: 'center', marginTop: '20px', padding: '25px', backgroundColor: '#fff', borderRadius: '12px', boxShadow: '0 8px 30px rgba(0,0,0,0.1)', border: '1px solid #e0e0e0' }}>
-                            <h3 style={{ fontSize: '18px', color: '#0b3c91', marginBottom: '15px', fontWeight: 'bold' }}>Complete payment for Verification</h3>
+                        <input name="age" type="number" placeholder="Age"
+                            value={formData.age} onChange={handleChange}
+                            style={inputStyle}
+                            onFocus={(e) => focusStyle(e, "#6c63ff")}
+                            onBlur={(e) => focusStyle(e, "#ccc")}
+                        />
 
-                            <div style={{ backgroundColor: '#f0f5ff', padding: '12px', borderRadius: '8px', marginBottom: '20px' }}>
-                                <p style={{ fontWeight: '600', color: '#2c3e50', fontSize: '16px', marginBottom: '4px' }}>
-                                    Selected Plan: {planDetails[formData.professionalPlan].name}
+                        {/* Status */}
+<div style={{ gridColumn: "1 / -1" }}>
+    <h4>Status</h4>
+
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+
+        <label style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            width: "auto"
+        }}>
+            <input
+                type="radio"
+                name="brokerStatus"
+                value="existing_broker"
+                checked={formData.brokerStatus === 'existing_broker'}
+                onChange={handleChange}
+            />
+            <span style={{ whiteSpace: "nowrap" }}>Existing Broker</span>
+        </label>
+
+        <label style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            width: "auto"
+        }}>
+            <input
+                type="radio"
+                name="brokerStatus"
+                value="fresher"
+                checked={formData.brokerStatus === 'fresher'}
+                onChange={handleChange}
+            />
+            <span style={{ whiteSpace: "nowrap" }}>Fresher with TRIONA</span>
+        </label>
+
+    </div>
+</div>
+                        {/* Plan */}
+                        <div style={{ gridColumn: "1 / -1" }}>
+                            <h4>Select Professional Plan</h4>
+
+                            <select name="professionalPlan"
+                                value={formData.professionalPlan}
+                                onChange={handleChange}
+                                style={inputStyle}>
+                                <option value="basic">Basic Plan - ₹1999</option>
+                                <option value="premium">Premium - ₹2999</option>
+                                <option value="premium_plus">Premium Plus - ₹3999</option>
+                            </select>
+
+                            <div style={{
+                                marginTop: "20px",
+                                padding: "25px",
+                                borderRadius: "12px",
+                                background: "#f7f9ff",
+                                textAlign: "center"
+                            }}>
+                                <h3>{planDetails[formData.professionalPlan].name}</h3>
+                                <p style={{ fontWeight: "bold" }}>
+                                    {planDetails[formData.professionalPlan].price}
                                 </p>
-                                <p style={{ color: '#0b3c91', fontWeight: 'bold', fontSize: '18px' }}>
-                                    Amount: {planDetails[formData.professionalPlan].price}
+                                <p>
+                                    Buy: {planDetails[formData.professionalPlan].buyComm} |
+                                    Sell: {planDetails[formData.professionalPlan].sellComm}
                                 </p>
+                                <img src={planDetails[formData.professionalPlan].qr}
+                                    alt="QR" style={{ width: "200px" }} />
                             </div>
 
-                            <p style={{ fontSize: '13px', color: '#444', marginBottom: '15px' }}>
-                                Buying Comm: <span style={{ fontWeight: 'bold' }}>{planDetails[formData.professionalPlan].buyComm}</span> | Selling Comm: <span style={{ fontWeight: 'bold' }}>{planDetails[formData.professionalPlan].sellComm}</span>
-                            </p>
-
-                            <div style={{ padding: '10px', background: '#fff', display: 'inline-block', borderRadius: '10px', border: '1px solid #eee', marginBottom: '10px' }}>
-                                <img
-                                    src={planDetails[formData.professionalPlan].qr}
-                                    alt={`QR Code for ${planDetails[formData.professionalPlan].name}`}
-                                    style={{ maxWidth: '200px', height: 'auto', display: 'block' }}
-                                />
-                            </div>
-
-                            <p style={{ fontSize: '13px', color: '#e74c3c', marginTop: '15px', fontWeight: '600' }}>Note: Profile will be verified by admin after payment.</p>
+                        
                         </div>
-                    </div>
 
-                    {/* === Referral Section (NEW) === */}
-                    <div style={{ textAlign: 'left', marginBottom: '15px' }}>
-                        <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>Referral:</label>
-                        <label style={{ marginRight: '20px', cursor: 'pointer' }}>
-                            <input
-                                type="radio"
-                                name="referralStatus"
-                                value="not_referred"
-                                checked={formData.referralStatus === 'not_referred'}
-                                onChange={handleChange}
-                                style={{ width: 'auto', marginRight: '5px' }}
-                            />
-                            Not Referred
-                        </label>
-                        <label style={{ cursor: 'pointer' }}>
-                            <input
-                                type="radio"
-                                name="referralStatus"
-                                value="referred"
-                                checked={formData.referralStatus === 'referred'}
-                                onChange={handleChange}
-                                style={{ width: 'auto', marginRight: '5px' }}
-                            />
-                            Referred
-                        </label>
+                        {/* Referral */}
+                        <div style={{ gridColumn: "1 / -1" }}>
+    <h4>Referral</h4>
 
-                        {formData.referralStatus === 'referred' && (
-                            <input
-                                type="text"
-                                name="referredByPhone"
-                                placeholder="Enter Referrer Advisor Phone Number"
-                                value={formData.referredByPhone}
-                                onChange={handleChange}
-                                style={{ marginTop: '10px' }}
-                            />
-                        )}
-                    </div>
+    <div style={{ display: "flex", flexDirection: "column", alignItems:"flex-start", gap: "12px" }}>
 
-                    <button type="submit" disabled={loading}>
-                        {loading ? 'Registering...' : 'Register'}
-                    </button>
-                </form>
-
-                {message && <p style={{ color: 'green', marginTop: '15px' }}>{message}</p>}
-                {error && <p style={{ color: 'red', marginTop: '15px' }}>{error}</p>}
-
-                <p>
-                    Already have an account? <Link to="/advisor/login">Login</Link>
-                </p>
-                <p>
-                    <Link to="/">Back to Home</Link>
-                </p>
-            </div>
+        <div style={{ display: "flex", alignItems: "center", gap:"8px", width:"auto" }}>
+            <input
+                type="radio"
+                name="referralStatus"
+                value="not_referred"
+                checked={formData.referralStatus === 'not_referred'}
+                onChange={handleChange}
+                style={{ marginRight: "10px" }}
+            />
+            <span style={{ whiteSpace: "nowrap" }}>Not Referred</span>
         </div>
+
+        <div style={{ display: "flex", alignItems: "center" }}>
+            <input
+                type="radio"
+                name="referralStatus"
+                value="referred"
+                checked={formData.referralStatus === 'referred'}
+                onChange={handleChange}
+                style={{ marginRight: "10px" }}
+            />
+            <span>Referred</span>
+        </div>
+
+    </div>
+
+    {formData.referralStatus === 'referred' && (
+        <input
+            name="referredByPhone"
+            placeholder="Enter Referrer Advisor Phone"
+            value={formData.referredByPhone}
+            onChange={handleChange}
+            style={{ marginTop: "10px", width: "100%" }}
+        />
+    )}
+</div>
+
+                        {/* Button */}
+                        <button type="submit" disabled={loading}
+                            style={{
+                                gridColumn: "1 / -1",
+                                padding: "14px",
+                                background: "linear-gradient(135deg,#6c63ff,#8f5cff)",
+                                color: "#fff",
+                                border: "none",
+                                borderRadius: "8px",
+                                fontSize: "16px",
+                                cursor: "pointer"
+                            }}>
+                            {loading ? "Registering..." : "Register"}
+                        </button>
+
+                    </form>
+
+                    <p style={{ textAlign: "center", marginTop: "20px" }}>
+                        Already have an account? <Link to="/advisor/login">Login</Link>
+                    </p>
+
+                    <p style={{ textAlign: "center" }}>
+                        <Link to="/">Back to Home</Link>
+                    </p>
+
+                    <p style={{ textAlign: "center" }}>
+                        <Link to="/policies/AdvisorAgreement">Advisor Term & condition</Link>
+                    </p>
+
+                </div>
+            </div>
+        </>
     );
 };
 

@@ -121,6 +121,9 @@ const AdvisorRegister = () => {
             <div className="login-link">
                 Already registered?
                 <Link to="/advisor/login">Login here</Link>
+                {/* <div>
+                    <link to="/policies/AdvisorAgreement.jsx">Advisor Term & Condition</link> 
+                    </div> */}
             </div>
         </div>
     );

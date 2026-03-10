@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import API_URL from '../config';
 import Navbar from '../components/Navbar';
+import './Home.css';
 
 const Home = () => {
     const [featured, setFeatured] = useState([]);
@@ -173,9 +174,11 @@ const Home = () => {
             {/* Become a part of TRIONA - above footer */}
             <section className="become-triona-section">
                 <h2 className="become-triona-heading">Become a part of TRIONA</h2>
+                <br></br>
                 <div className="become-triona-cards">
+                    <br></br>
                     <div className="hero-card">
-                        <h3>Become a Seller men</h3>
+                        <h3>Become a Seller</h3>
                         <p>List your property and reach genuine buyers.</p>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKu8OaVo_Nj1eFulzP1XJEt6CzjuhcK7w4dvvzB-U1WNubyw/viewform?usp=header">
                             Post Property →
