@@ -176,7 +176,6 @@ const Home = () => {
                 <h2 className="become-triona-heading">Become a part of TRIONA</h2>
                 <br></br>
                 <div className="become-triona-cards">
-                    <br></br>
                     <div className="hero-card">
                         <h3>Become a Seller</h3>
                         <p>List your property and reach genuine buyers.</p>
