@@ -179,14 +179,17 @@ const Home = () => {
                     <div className="hero-card">
                         <h3>Become a Seller</h3>
                         <p>List your property and reach genuine buyers.</p>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKu8OaVo_Nj1eFulzP1XJEt6CzjuhcK7w4dvvzB-U1WNubyw/viewform?usp=header">
+                        <a href="/seller/register">
                             Post Property →
                         </a>
+                               {/* <Link to="/advisor/register">Advisor Register</Link>
+                                                            <Link to="/seller/register">Seller Register</Link>
+                                                            <Link to="/buyer/register">Buyer Register</Link> */}
                     </div>
                     <div className="hero-card">
                         <h3>Become a Buyer</h3>
                         <p>Find verified properties with expert guidance.</p>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfTvg6XQTaNb8rMW00rNY9w7jBE92jn87_7vycMNx0sTnNzNA/viewform?usp=publish-editor">
+                        <a href="/buyer/register">
                             Get Started →
                         </a>
                     </div>

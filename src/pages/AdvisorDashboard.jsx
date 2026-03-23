@@ -1153,7 +1153,7 @@ const styles = {
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '10px 20px',
-        backgroundColor: '#0b3c91',
+        backgroundColor: '#8314c4',
         color: '#fff',
         boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
         position: 'sticky',
@@ -1203,7 +1203,8 @@ const styles = {
     },
     profileName: {
         fontSize: '16px',
-        fontWeight: '500'
+        fontWeight: '800',
+        color: "#fff"
     },
     logoutBtn: {
         padding: '10px 20px',

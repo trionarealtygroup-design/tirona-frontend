@@ -37,9 +37,9 @@ const AdvisorRegister = () => {
     });
 
     const planDetails = {
-        basic: { name: 'Basic Plan', price: '₹1999', qr: '/Images/qr.png', buyComm: '0.40%', sellComm: '0.20%' },
-        premium: { name: 'Premium Plan', price: '₹2999', qr: '/Images/qr.png', buyComm: '0.60%', sellComm: '0.40%' },
-        premium_plus: { name: 'Premium Plus', price: '₹3999', qr: '/Images/qr.png', buyComm: '0.80%', sellComm: '0.60%' }
+        basic: { name: 'Basic Plan', price: 'Free Joining', qr: '/Images/TRIONA.png', buyComm: '0.40%', sellComm: '0.20%' },
+        premium: { name: 'Premium Plan', price: 'Paid', qr: '/Images/TRIONA.png', buyComm: '0.60%', sellComm: '0.40%' },
+        premium_plus: { name: 'Premium Plus', price: 'Paid', qr: '/Images/TRIONA.png', buyComm: '0.80%', sellComm: '0.60%' }
     };
 
     const [message, setMessage] = useState('');
@@ -206,9 +206,9 @@ const AdvisorRegister = () => {
                                 value={formData.professionalPlan}
                                 onChange={handleChange}
                                 style={inputStyle}>
-                                <option value="basic">Basic Plan - ₹1999</option>
-                                <option value="premium">Premium - ₹2999</option>
-                                <option value="premium_plus">Premium Plus - ₹3999</option>
+                                <option value="basic">Basic Plan - Free Joining</option>
+                                <option value="premium">Premium - Paid</option>
+                                <option value="premium_plus">Premium Plus - Paid</option>
                             </select>
 
                             <div style={{
@@ -302,7 +302,7 @@ const AdvisorRegister = () => {
                     </p>
 
                     <p style={{ textAlign: "center" }}>
-                        <Link to="/policies/AdvisorAgreement">Advisor Term & condition</Link>
+                        <Link to="/pages/policies/AdvisorAgreement.jsx">Advisor Term & condition</Link>
                     </p>
 
                 </div>
